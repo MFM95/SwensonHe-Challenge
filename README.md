@@ -50,7 +50,7 @@ private fun isAnagram_secondSolution(firstString: String, secondString: String):
 ## III. Generate the nth Fibonacci number
 A. recursive approach
 ```kotlin 
-fun fibonacciRecursive(n: Int): Int {
+private fun fibonacciRecursive(n: Int): Int {
     if (n <= 1) return 1
     return fibonacciRecursive(n-1) + fibonacciRecursive(n-2)
 }
@@ -58,7 +58,7 @@ fun fibonacciRecursive(n: Int): Int {
 ```
 B. iterative approach
 ```kotlin 
-fun fibonacciIterative(n: Int): Int {
+private fun fibonacciIterative(n: Int): Int {
     val intArray = IntArray(n+2)
     intArray[0] = 1
     intArray[1] = 1
