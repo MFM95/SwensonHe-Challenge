@@ -113,6 +113,7 @@ class CurrenciesFragment : Fragment() {
     }
 
     private fun showError(message: String) {
+        progressLoading.visibility = View.GONE
         Snackbar.make(clCurrencyRootView, message, Snackbar.LENGTH_LONG)
             .setAction(getString(R.string.dismiss_btn)) { }
             .setActionTextColor(ContextCompat.getColor(requireContext(), R.color.red))
