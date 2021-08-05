@@ -10,63 +10,67 @@
 
  - First solution (Sorting strings):
 ```kotlin 
-private fun isAnagram_firstSolution(firstString: String, secondString: String): Boolean {
-    val firstArray = firstString.lowercase(Locale.getDefault()).toCharArray()
-    val secondArray = secondString.lowercase(Locale.getDefault()).toCharArray()
-    firstArray.sort()
-    secondArray.sort()
-    if (firstArray.size != secondArray.size) return false
-    for (i in firstArray.indices) {
-        if (firstArray[i] != secondArray[i])
-            return false
+      private fun isAnagram_firstSolution(firstString: String, secondString: String): Boolean {
+        val s1 = firstString.lowercase(Locale.getDefault()).replace("\\s".toRegex(), "")
+        val s2 = secondString.lowercase(Locale.getDefault()).replace("\\s".toRegex(), "")
+        val firstArray = s1.toCharArray()
+        val secondArray = s2.toCharArray()
+        firstArray.sort()
+        secondArray.sort()
+        if (firstArray.size != secondArray.size) return false
+        for (i in firstArray.indices) {
+            if (firstArray[i] != secondArray[i])
+                return false
+        }
+        return true
     }
-    return true
-}
+
 ```
 
 - Second solution (Hash Maps):
 ```kotlin 
-private fun isAnagram_secondSolution(firstString: String, secondString: String): Boolean {
-    val firstMap = HashMap<Char, Int>()
-    val secondMap = HashMap<Char, Int>()
-    firstString.lowercase(Locale.getDefault())
-    secondString.lowercase(Locale.getDefault())
-    firstString.forEach {
-        if (!firstMap.containsKey(it))
-            firstMap[it] = 1
-        else firstMap[it] = firstMap[it]!! + 1
-    }
-    secondString.forEach {
-        if (!secondMap.containsKey(it))
-            secondMap[it] = 1
-        else secondMap[it] = secondMap[it]!! + 1
+    private fun isAnagram_secondSolution(firstString: String, secondString: String): Boolean {
+        val firstMap = HashMap<Char, Int>()
+        val secondMap = HashMap<Char, Int>()
+        val s1 = firstString.lowercase(Locale.getDefault()).replace("\\s".toRegex(), "")
+        val s2 = secondString.lowercase(Locale.getDefault()).replace("\\s".toRegex(), "")
+        s1.forEach {
+            if (!firstMap.containsKey(it))
+                firstMap[it] = 1
+            else firstMap[it] = firstMap[it]!! + 1
+        }
+        s2.forEach {
+            if (!secondMap.containsKey(it))
+                secondMap[it] = 1
+            else secondMap[it] = secondMap[it]!! + 1
+        }
+
+        return (firstMap == secondMap)
     }
 
-    return (firstMap == secondMap)
-}
 ```
 -------------------
 
 ## III. Generate the nth Fibonacci number
 A. recursive approach
 ```kotlin 
-private fun fibonacciRecursive(n: Int): Int {
-    if (n <= 1) return 1
-    return fibonacciRecursive(n-1) + fibonacciRecursive(n-2)
-}
+    private fun fibonacciRecursive(n: Int): Int {
+        if (n <= 1) return 1
+        return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2)
+    }
 
 ```
 B. iterative approach
 ```kotlin 
-private fun fibonacciIterative(n: Int): Int {
-    val intArray = IntArray(n+2)
-    intArray[0] = 1
-    intArray[1] = 1
-    for (i in 2 until n+1) {
-        intArray[i] = intArray[i-1] + intArray[i-2]
+    private fun fibonacciIterative(n: Int): Int {
+        val intArray = IntArray(n + 2)
+        intArray[0] = 1
+        intArray[1] = 1
+        for (i in 2 until n + 1) {
+            intArray[i] = intArray[i - 1] + intArray[i - 2]
+        }
+        return intArray[n]
     }
-    return intArray[n]
-}
 ```
 
 -----------------
